@@ -1,0 +1,9 @@
+= mpTiff = (04.10.2007 Liseev Sergey)
+
+DESCRIPTION:
+Small GUI application for Multi-page TIFF documents creation.
+Uses a set of simple one-page TIFF files as source and creates
+one multi-page TIFF documant.
+
+PLATFORM:
+.NET 2.0 C#
