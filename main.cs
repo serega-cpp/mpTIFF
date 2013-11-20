@@ -39,22 +39,19 @@ public class MyMPTiffApp
         string destFileName = saveFileDialog.FileName;
 
         //// Create multipage TIFF file
-        EncoderParameters tiffEncoderParams = new EncoderParameters(1);
-        tiffEncoderParams.Param[0] = new EncoderParameter(Encoder.SaveFlag, (long)EncoderValue.MultiFrame);
         ImageCodecInfo tiffCodecInfo = GetEncoderInfo("image/tiff");
+        EncoderParameters tiffEncoderParams = new EncoderParameters(1);
+        
+        // Save first page
         Image gim = Image.FromFile(srcFileNames[0]);
-
-        for (int i = 0; i < srcFileNames.Length; i++) {
-            if (i == 0) {
-                // Save first page
-                gim.Save(destFileName, tiffCodecInfo, tiffEncoderParams);
-                tiffEncoderParams.Param[0] = new EncoderParameter(Encoder.SaveFlag, (long)EncoderValue.FrameDimensionPage);
-            }
-            else {
-                // Add and Save other pages
-                Image img = Image.FromFile(srcFileNames[i]);
-                gim.SaveAdd(img, tiffEncoderParams);
-            }
+        tiffEncoderParams.Param[0] = new EncoderParameter(Encoder.SaveFlag, (long)EncoderValue.MultiFrame);
+        gim.Save(destFileName, tiffCodecInfo, tiffEncoderParams);
+        
+        // Add and Save other pages
+        tiffEncoderParams.Param[0] = new EncoderParameter(Encoder.SaveFlag, (long)EncoderValue.FrameDimensionPage);
+        for (int i = 1; i < srcFileNames.Length; i++) {
+            Image img = Image.FromFile(srcFileNames[i]);
+            gim.SaveAdd(img, tiffEncoderParams);
         }
 
         // Finalize file
