@@ -1,4 +1,4 @@
-= mpTiff = (04.10.2007 Liseev Sergey)
+= mpTiff = (04.10.2007 serega.cpp)
 
 DESCRIPTION:
 Small GUI application for Multi-page TIFF documents creation.
