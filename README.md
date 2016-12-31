@@ -1,4 +1,4 @@
 mpTIFF
 ======
 
-[C#, Windows] Tool combines simple TIFF images into one multi-pages TIFF document.
+[C#, Windows] GUI Tool creates multi-pages TIFF document from simple TIFF images.
